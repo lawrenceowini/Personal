@@ -14,7 +14,7 @@ export const projects = [
       "Dashboard interface",
       "Database integration with Supabase",
       "Secure access control",
-      "For Testing: admin credentials - email: examplemail@gmail.com, password: examplemail1234",
+      "For Testing: Login Credentials - email: examplemail@gmail.com, password: examplemail1234",
     ],
 
     github: "https://github.com/lawrenceOwino/portfolio-tracker",
