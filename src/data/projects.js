@@ -17,7 +17,7 @@ export const projects = [
     ],
 
     github: "https://github.com/lawrenceOwino/portfolio-tracker",
-    live: "",
+    live: "https://prolawportfoliotracker.streamlit.app/",
   },
 
   {
