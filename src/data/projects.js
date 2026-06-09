@@ -16,7 +16,7 @@ export const projects = [
       "Secure access control",
     ],
 
-    github: "https://github.com/lawrenceowini/portfolio-tracker",
+    github: "https://github.com/lawrenceOwino/portfolio-tracker",
     live: "",
   },
 
@@ -36,7 +36,7 @@ export const projects = [
       "Multi-client support",
     ],
 
-    github: "https://github.com/lawrenceowini/argis-messaging",
+    github: "https://github.com/lawrenceOwino/argis-messaging",
     live: "",
   },
 
@@ -54,7 +54,7 @@ export const projects = [
       "User authentication",
     ],
 
-    github: "https://github.com/lawrenceowini/Lawstream",
+    github: "https://github.com/lawrenceOwino/Lawstream",
     live: "",
   },
 
@@ -74,7 +74,7 @@ export const projects = [
       "Purchase functionality",
     ],
 
-    github: "https://github.com/lawrenceowini/catsiteproject",
+    github: "https://github.com/lawrenceOwino/catsiteproject",
 
     live: "https://stella-warutere.github.io/catsiteproject/index.html",
   },

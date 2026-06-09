@@ -7,18 +7,18 @@ export default function Contact() {
         <p>
           Email:{" "}
           <a href="mailto:youremail@example.com" className="text-blue-400">
-            lawrenceowini17@gmail.com
+            lawrenceOwino17@gmail.com
           </a>
         </p>
 
         <p>
           GitHub:{" "}
           <a
-            href="https://github.com/lawrenceowini"
+            href="https://github.com/lawrenceOwino"
             target="_blank"
             className="text-blue-400"
           >
-            github.com/lawrenceowini
+            github.com/lawrenceOwino
           </a>
         </p>
       </div>
