@@ -18,7 +18,7 @@ export default function Hero() {
       </p>
       <div className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
         <a
-          href="https://github.com/lawrenceOwino"
+          href="https://github.com/lawrenceowini"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 bg-gray-900 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg hover:bg-gray-800 transition text-sm sm:text-base"
@@ -26,7 +26,9 @@ export default function Hero() {
           <FaGithub /> GitHub
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/lawrence-owino-3b46b0267/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 bg-blue-700 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg hover:bg-blue-600 transition text-sm sm:text-base"
         >
           <FaLinkedin /> LinkedIn
