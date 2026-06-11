@@ -7,7 +7,7 @@ export default function Contact() {
         <p>
           Email:{" "}
           <a href="mailto:lawrenceowini17@gmail.com" className="text-blue-400">
-            lawrenceOwino17@gmail.com
+            lawrenceowini17@gmail.com
           </a>
         </p>
 
