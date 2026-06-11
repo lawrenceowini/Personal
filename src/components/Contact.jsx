@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="space-y-4 text-gray-400">
         <p>
           Email:{" "}
-          <a href="mailto:youremail@example.com" className="text-blue-400">
+          <a href="mailto:lawrenceowini17@gmail.com" className="text-blue-400">
             lawrenceOwino17@gmail.com
           </a>
         </p>
@@ -14,11 +14,11 @@ export default function Contact() {
         <p>
           GitHub:{" "}
           <a
-            href="https://github.com/lawrenceOwino"
+            href="https://github.com/lawrenceowini"
             target="_blank"
             className="text-blue-400"
           >
-            github.com/lawrenceOwino
+            github.com/lawrenceowini
           </a>
         </p>
       </div>
