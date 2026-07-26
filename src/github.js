@@ -1,4 +1,4 @@
-const GITHUB_USERNAME = "Lawrence Owino";
+const GITHUB_USERNAME = "lawrenceowini";
 
 // Repos to hide from the projects list (e.g. this portfolio site itself)
 const EXCLUDED_REPOS = ["Personal"];
