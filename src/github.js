@@ -1,4 +1,4 @@
-const GITHUB_USERNAME = "lawrenceowini";
+const GITHUB_USERNAME = "Lawrence Owino";
 
 // Repos to hide from the projects list (e.g. this portfolio site itself)
 const EXCLUDED_REPOS = ["Personal"];
@@ -23,7 +23,7 @@ function stripMarkdown(text) {
 function excerptFromReadme(raw, maxLines = 4) {
   const lines = stripMarkdown(raw);
   const meaningful = lines.filter(
-    (line) => !/shields\.io/.test(line) && !/^badge/i.test(line)
+    (line) => !/shields\.io/.test(line) && !/^badge/i.test(line),
   );
   return meaningful.slice(0, maxLines);
 }
@@ -42,7 +42,7 @@ async function fetchReadmeExcerpt(repoName) {
   try {
     const res = await fetch(
       `https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/readme`,
-      { headers: { Accept: "application/vnd.github.raw" } }
+      { headers: { Accept: "application/vnd.github.raw" } },
     );
     if (!res.ok) return [];
     const raw = await res.text();
@@ -55,7 +55,7 @@ async function fetchReadmeExcerpt(repoName) {
 async function fetchLanguages(repoName) {
   try {
     const langs = await fetchJSON(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/languages`
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/languages`,
     );
     return Object.keys(langs);
   } catch {
@@ -79,7 +79,7 @@ function writeCache(data) {
   try {
     localStorage.setItem(
       CACHE_KEY,
-      JSON.stringify({ timestamp: Date.now(), data })
+      JSON.stringify({ timestamp: Date.now(), data }),
     );
   } catch {
     // storage full or unavailable, safe to ignore
@@ -97,11 +97,11 @@ export async function fetchGithubProjects() {
   if (cached) return cached;
 
   const repos = await fetchJSON(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
   );
 
   const visible = repos.filter(
-    (repo) => !repo.fork && !EXCLUDED_REPOS.includes(repo.name)
+    (repo) => !repo.fork && !EXCLUDED_REPOS.includes(repo.name),
   );
 
   const projects = await Promise.all(
@@ -120,7 +120,7 @@ export async function fetchGithubProjects() {
         live: repo.homepage || "",
         updatedAt: repo.updated_at,
       };
-    })
+    }),
   );
 
   projects.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
