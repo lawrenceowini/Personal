@@ -99,12 +99,14 @@ export default async function handler(req, res) {
 
     projects.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
-    // Cache at Vercel's edge for 1 hour; serve stale for up to a day while
-    // revalidating in the background. This is what keeps origin calls to
-    // GitHub down to roughly once/hour total, regardless of visitor count.
+    // Cache at Vercel's edge for 10 minutes; serve stale for up to a day
+    // while revalidating in the background. New/changed repos show up
+    // automatically within ~10 minutes, no manual redeploy needed. Safe to
+    // shorten further if a GITHUB_TOKEN is set (see authHeaders above),
+    // since that raises the GitHub rate limit from 60/hr to 5000/hr.
     res.setHeader(
       "Cache-Control",
-      "s-maxage=3600, stale-while-revalidate=86400"
+      "s-maxage=600, stale-while-revalidate=86400"
     );
     res.status(200).json(projects);
   } catch (err) {
