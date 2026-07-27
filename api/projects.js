@@ -68,6 +68,29 @@ async function fetchLanguages(repoName) {
   }
 }
 
+function normalizeUrl(url) {
+  if (!url) return "";
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+}
+
+function screenshotUrlFor(liveUrl) {
+  if (!liveUrl) return "";
+  // Microlink's free tier: 25 fresh screenshots/day, but results are cached
+  // on their CDN for 24h and cached hits don't count against the quota. So
+  // regardless of visitor volume, each live project only "costs" roughly
+  // one real screenshot generation per day.
+  const params = new URLSearchParams({
+    url: liveUrl,
+    screenshot: "true",
+    meta: "false",
+    "screenshot.type": "jpeg",
+    "viewport.width": "1280",
+    "viewport.height": "800",
+    embed: "screenshot.url",
+  });
+  return `https://api.microlink.io/?${params.toString()}`;
+}
+
 export default async function handler(req, res) {
   try {
     const repos = await fetchJSON(
@@ -85,13 +108,16 @@ export default async function handler(req, res) {
           fetchReadmeExcerpt(repo.name),
         ]);
 
+        const live = repo.homepage ? normalizeUrl(repo.homepage) : "";
+
         return {
           title: repo.name,
           description: repo.description || "No description provided.",
           tech: tech.length ? tech : repo.language ? [repo.language] : [],
           features,
           github: repo.html_url,
-          live: repo.homepage || "",
+          live,
+          screenshot: screenshotUrlFor(live),
           updatedAt: repo.updated_at,
           pinned: Array.isArray(repo.topics) && repo.topics.includes("pinned"),
         };
