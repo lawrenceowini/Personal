@@ -93,11 +93,17 @@ export default async function handler(req, res) {
           github: repo.html_url,
           live: repo.homepage || "",
           updatedAt: repo.updated_at,
+          pinned: Array.isArray(repo.topics) && repo.topics.includes("pinned"),
         };
       })
     );
 
-    projects.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    // Pinned repos (tag a GitHub repo with the topic "pinned" to feature it)
+    // always come first; everything else falls back to most-recently-updated.
+    projects.sort((a, b) => {
+      if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
+      return new Date(b.updatedAt) - new Date(a.updatedAt);
+    });
 
     // Cache at Vercel's edge for 10 minutes; serve stale for up to a day
     // while revalidating in the background. New/changed repos show up

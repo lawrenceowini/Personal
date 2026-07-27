@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fix 1: Title now matches og:title -->
     <title>Lawrence Owino | Software Developer</title>
 
     <meta
@@ -17,6 +17,7 @@
       content="Lawrence Owino, software developer, React, Python, Flask, portfolio, software engineer"
     />
     <meta name="author" content="Lawrence Owino" />
+    <link rel="canonical" href="https://lawrenceowino.vercel.app/" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Lawrence Owino | Software Developer" />
@@ -24,15 +25,13 @@
       property="og:description"
       content="Software developer building secure and intelligent systems."
     />
-    <!-- Fix 2: og:image is now an absolute URL -->
     <meta
       property="og:image"
-      content="https://lawrenceowino.vercel.app/icon.png"
+      content="https://lawrenceowino.vercel.app/og-image.jpg"
     />
     <meta property="og:url" content="https://lawrenceowino.vercel.app" />
     <meta property="og:type" content="website" />
 
-    <!-- Fix 3: Twitter card tags added -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Lawrence Owino | Software Developer" />
     <meta
@@ -41,8 +40,23 @@
     />
     <meta
       name="twitter:image"
-      content="https://lawrenceowino.vercel.app/icon.png"
+      content="https://lawrenceowino.vercel.app/og-image.jpg"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lawrence Owino",
+        "url": "https://lawrenceowino.vercel.app",
+        "sameAs": [
+          "https://github.com/lawrenceowini",
+          "https://www.linkedin.com/in/lawrence-owino-3b46b0267/"
+        ],
+        "jobTitle": "Software Developer",
+        "description": "Software developer and software engineering student specializing in web applications, APIs, and intelligent systems."
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

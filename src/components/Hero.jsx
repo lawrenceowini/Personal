@@ -1,18 +1,23 @@
 import profile from "../assets/profile.jpg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
+// Update this whenever you replace public/resume.pdf with a new version.
+const RESUME_LAST_UPDATED = "July 2026";
+
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center text-center px-4 sm:px-6 md:px-8 py-14 sm:py-20 md:py-24">
+    <section className="animate-fade-in-up flex flex-col items-center text-center px-4 sm:px-6 md:px-8 py-14 sm:py-20 md:py-24">
       <img
         src={profile}
         alt="Lawrence Owino"
+        width={176}
+        height={176}
         className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-full object-cover border-4 border-gray-700 shadow-lg mb-6 sm:mb-8"
       />
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 leading-tight">
         Lawrence Owino
       </h1>
-      <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-xs sm:max-w-xl md:max-w-2xl mb-6 sm:mb-8 leading-relaxed">
+      <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xs sm:max-w-xl md:max-w-2xl mb-6 sm:mb-8 leading-relaxed">
         Software Developer • Software Engineering Student • Builder of secure
         and intelligent systems.
       </p>
@@ -49,6 +54,9 @@ export default function Hero() {
           Download Résumé
         </a>
       </div>
+      <p className="text-gray-500 text-xs sm:text-sm mt-3">
+        Résumé last updated: {RESUME_LAST_UPDATED}
+      </p>
     </section>
   );
 }
