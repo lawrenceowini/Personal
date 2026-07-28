@@ -1,21 +1,49 @@
+import { useEffect, useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { fetchGithubStats } from "../lib/githubStats";
 
-const GITHUB_USERNAME = "lawrenceowini";
+function StatCard({ label, value }) {
+  return (
+    <div className="bg-surface border border-border rounded-xl p-5 text-center">
+      <p className="font-display text-2xl sm:text-3xl font-semibold text-accent mb-1">
+        {value}
+      </p>
+      <p className="font-mono text-xs uppercase tracking-wider text-muted">
+        {label}
+      </p>
+    </div>
+  );
+}
 
-const THEME_PARAMS = new URLSearchParams({
-  bg_color: "00000000",
-  title_color: "F2B84B",
-  text_color: "8A93A8",
-  icon_color: "F2B84B",
-  hide_border: "true",
-});
-
-const statsUrl = `https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&count_private=false&${THEME_PARAMS.toString()}`;
-
-const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&langs_count=8&${THEME_PARAMS.toString()}`;
+function memberSinceYear(isoString) {
+  if (!isoString) return "—";
+  return new Date(isoString).getFullYear();
+}
 
 export default function GithubStats() {
   const [ref, isVisible] = useScrollReveal();
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchGithubStats()
+      .then((data) => {
+        if (!cancelled) setStats(data);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section
@@ -31,24 +59,64 @@ export default function GithubStats() {
         GitHub Activity
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
-        <div className="bg-surface border border-border rounded-xl p-2 sm:p-3 flex items-center justify-center">
-          <img
-            src={statsUrl}
-            alt="Lawrence Owino's GitHub stats"
-            loading="lazy"
-            className="w-full"
-          />
+      {loading && (
+        <p className="text-center text-muted font-mono text-sm">Loading…</p>
+      )}
+
+      {error && (
+        <p className="text-center text-muted">
+          Couldn't load GitHub stats right now. View the profile directly on{" "}
+          <a
+            href="https://github.com/lawrenceowini"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      )}
+
+      {!loading && !error && stats && (
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <StatCard label="Public Repos" value={stats.publicRepos} />
+            <StatCard label="Followers" value={stats.followers} />
+            <StatCard label="Total Stars" value={stats.totalStars} />
+            <StatCard
+              label="On GitHub Since"
+              value={memberSinceYear(stats.memberSince)}
+            />
+          </div>
+
+          {stats.topLanguages.length > 0 && (
+            <div className="bg-surface border border-border rounded-xl p-5 sm:p-6">
+              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+                Top Languages
+              </p>
+              <div className="space-y-3">
+                {stats.topLanguages.map((lang) => (
+                  <div key={lang.name}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>{lang.name}</span>
+                      <span className="text-muted font-mono text-xs">
+                        {lang.percent}%
+                      </span>
+                    </div>
+                    <div className="h-1.5 bg-surface-hover rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-accent rounded-full"
+                        style={{ width: `${lang.percent}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-        <div className="bg-surface border border-border rounded-xl p-2 sm:p-3 flex items-center justify-center">
-          <img
-            src={langsUrl}
-            alt="Lawrence Owino's most-used languages"
-            loading="lazy"
-            className="w-full"
-          />
-        </div>
-      </div>
+      )}
     </section>
   );
 }
