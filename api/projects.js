@@ -1,3 +1,5 @@
+import { CASE_STUDIES } from "./case-studies.js";
+
 const GITHUB_USERNAME = "lawrenceowini";
 
 // Repos to hide from the projects list (e.g. this portfolio site itself)
@@ -109,23 +111,28 @@ export default async function handler(req, res) {
         ]);
 
         const live = repo.homepage ? normalizeUrl(repo.homepage) : "";
+        const caseStudy = CASE_STUDIES[repo.name] || null;
+        const hasPinnedTopic =
+          Array.isArray(repo.topics) && repo.topics.includes("pinned");
 
         return {
           title: repo.name,
           description: repo.description || "No description provided.",
           tech: tech.length ? tech : repo.language ? [repo.language] : [],
           features,
+          caseStudy,
           github: repo.html_url,
           live,
           screenshot: screenshotUrlFor(live),
           updatedAt: repo.updated_at,
-          pinned: Array.isArray(repo.topics) && repo.topics.includes("pinned"),
+          pinned: hasPinnedTopic || Boolean(caseStudy),
         };
       })
     );
 
-    // Pinned repos (tag a GitHub repo with the topic "pinned" to feature it)
-    // always come first; everything else falls back to most-recently-updated.
+    // Pinned repos come first: either tagged with the GitHub topic "pinned",
+    // or having curated case-study content below (see case-studies.js).
+    // Everything else falls back to most-recently-updated.
     projects.sort((a, b) => {
       if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
       return new Date(b.updatedAt) - new Date(a.updatedAt);

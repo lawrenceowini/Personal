@@ -170,24 +170,63 @@ export default function Projects() {
                   id={`project-details-${index}`}
                   className="mt-3 sm:mt-4 bg-surface border border-accent/30 rounded-xl p-5 sm:p-6"
                 >
-                  <h4 className="font-display text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
-                    From the README
-                  </h4>
-                  {project.features.length > 0 ? (
-                    <ul className="space-y-2 mb-5 sm:mb-6">
-                      {project.features.map((feature, i) => (
-                        <li key={i} className="flex gap-3 text-sm sm:text-base">
-                          <span className="text-xl leading-none text-accent shrink-0">
-                            ·
-                          </span>
-                          <span className="text-muted">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {project.caseStudy ? (
+                    <div className="space-y-5 mb-5 sm:mb-6">
+                      <div>
+                        <p className="font-mono text-xs uppercase tracking-wider text-accent mb-1.5">
+                          The Problem
+                        </p>
+                        <p className="text-muted text-sm sm:text-base">
+                          {project.caseStudy.problem}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-xs uppercase tracking-wider text-accent mb-1.5">
+                          The Trade-off
+                        </p>
+                        <p className="text-muted text-sm sm:text-base">
+                          {project.caseStudy.tradeoff}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-xs uppercase tracking-wider text-accent mb-1.5">
+                          The Hard Part
+                        </p>
+                        <p className="text-muted text-sm sm:text-base">
+                          {project.caseStudy.hardPart}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-xs uppercase tracking-wider text-accent mb-1.5">
+                          What I'd Change
+                        </p>
+                        <p className="text-muted text-sm sm:text-base">
+                          {project.caseStudy.whatIdChange}
+                        </p>
+                      </div>
+                    </div>
                   ) : (
-                    <p className="text-muted text-sm sm:text-base mb-5 sm:mb-6">
-                      No README found for this repo.
-                    </p>
+                    <>
+                      <h4 className="font-display text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+                        From the README
+                      </h4>
+                      {project.features.length > 0 ? (
+                        <ul className="space-y-2 mb-5 sm:mb-6">
+                          {project.features.map((feature, i) => (
+                            <li key={i} className="flex gap-3 text-sm sm:text-base">
+                              <span className="text-xl leading-none text-accent shrink-0">
+                                ·
+                              </span>
+                              <span className="text-muted">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-muted text-sm sm:text-base mb-5 sm:mb-6">
+                          No README found for this repo.
+                        </p>
+                      )}
+                    </>
                   )}
                   <div className="flex flex-wrap gap-3 sm:gap-4">
                     {project.github && (
