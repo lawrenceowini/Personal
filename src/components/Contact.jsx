@@ -45,7 +45,12 @@ export default function Contact() {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
-      <h2 className="text-3xl font-bold mb-10 text-center">Contact</h2>
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent text-center mb-3">
+        Let's build something
+      </p>
+      <h2 className="font-display text-3xl font-semibold mb-10 text-center">
+        Contact
+      </h2>
 
       <div className="max-w-md mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4 mb-8">
@@ -56,7 +61,7 @@ export default function Contact() {
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            className="w-full bg-surface border border-border rounded-lg px-4 py-2.5 text-white placeholder-muted/60 focus:outline-none focus:border-accent transition-colors"
           />
           <input
             type="email"
@@ -65,7 +70,7 @@ export default function Contact() {
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            className="w-full bg-surface border border-border rounded-lg px-4 py-2.5 text-white placeholder-muted/60 focus:outline-none focus:border-accent transition-colors"
           />
           <textarea
             name="message"
@@ -74,18 +79,18 @@ export default function Contact() {
             onChange={handleChange}
             required
             rows={4}
-            className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600 resize-none"
+            className="w-full bg-surface border border-border rounded-lg px-4 py-2.5 text-white placeholder-muted/60 focus:outline-none focus:border-accent transition-colors resize-none"
           />
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full bg-blue-700 hover:bg-blue-600 disabled:opacity-60 disabled:cursor-not-allowed transition text-white font-medium px-6 py-2.5 rounded-lg"
+            className="w-full bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed transition text-bg font-semibold px-6 py-2.5 rounded-lg"
           >
             {status === "sending" ? "Sending…" : "Send Message"}
           </button>
 
           {status === "sent" && (
-            <p className="text-green-400 text-sm text-center">
+            <p className="text-live text-sm text-center">
               Thanks — your message has been sent!
             </p>
           )}
@@ -94,13 +99,10 @@ export default function Contact() {
           )}
         </form>
 
-        <div className="space-y-2 text-gray-300 text-center text-sm">
+        <div className="space-y-2 text-muted text-center text-sm">
           <p>
             Or reach out directly:{" "}
-            <a
-              href="mailto:lawrenceowini17@gmail.com"
-              className="text-blue-400"
-            >
+            <a href="mailto:lawrenceowini17@gmail.com" className="text-accent">
               lawrenceowini17@gmail.com
             </a>
           </p>
@@ -110,7 +112,7 @@ export default function Contact() {
               href="https://github.com/lawrenceowini"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400"
+              className="text-accent"
             >
               github.com/lawrenceowini
             </a>

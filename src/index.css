@@ -1,8 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html{
-    scroll-behavior:smooth;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0d14;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(242, 184, 75, 0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 90% 15%, rgba(52, 211, 153, 0.05), transparent 60%);
+  background-repeat: no-repeat;
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Custom focus ring matching the accent color, visible on keyboard nav only */
+:focus-visible {
+  outline: 2px solid #f2b84b;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 @keyframes fade-in-up {
@@ -20,8 +42,18 @@ html{
   animation: fade-in-up 0.7s ease-out both;
 }
 
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .animate-pulse-dot {
     animation: none;
   }
 }

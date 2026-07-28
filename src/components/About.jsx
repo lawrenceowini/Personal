@@ -11,9 +11,14 @@ export default function About() {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
-      <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent text-center mb-3">
+        Who I am
+      </p>
+      <h2 className="font-display text-3xl font-semibold mb-8 text-center">
+        About Me
+      </h2>
 
-      <div className="max-w-3xl mx-auto text-gray-300 text-lg leading-8">
+      <div className="max-w-3xl mx-auto text-muted text-lg leading-8">
         <p>
           I'm Lawrence Owino, a software developer and software engineering
           student passionate about building secure, intelligent, and

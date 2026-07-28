@@ -140,7 +140,10 @@ export default async function handler(req, res) {
       "Cache-Control",
       "s-maxage=600, stale-while-revalidate=86400"
     );
-    res.status(200).json(projects);
+    res.status(200).json({
+      generatedAt: new Date().toISOString(),
+      projects,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
