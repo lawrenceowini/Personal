@@ -16,7 +16,7 @@ export default function Hero() {
       />
 
       <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-accent mb-3 sm:mb-4">
-        Software Developer · Nairobi, KE
+        Software Developer · Murang'a, KE
       </p>
 
       <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold mb-3 sm:mb-4 leading-tight">
@@ -24,8 +24,8 @@ export default function Hero() {
       </h1>
 
       <p className="text-muted text-base sm:text-lg md:text-xl max-w-xs sm:max-w-xl md:max-w-2xl mb-6 sm:mb-8 leading-relaxed">
-        Software engineering student building secure, intelligent systems —
-        from real-time messaging to portfolio management platforms.
+        Software engineering student building secure, intelligent systems — from
+        real-time messaging to portfolio management platforms.
       </p>
 
       <div className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
